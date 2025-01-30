@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Garden Viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    #controls {
+      margin: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<h1>AR Garden Viewer</h1>
+
+<div id="controls">
+  <button onclick="setModel('potato')">potato</button>
+  <button onclick="setModel('vegetable')">Vegetable Garden</button>
+  <button onclick="setModel('herb')">Herb Garden</button>
+</div>
+
+<model-viewer id="garden-viewer"
+              ar
+              ar-modes="scene-viewer webxr"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="1"
+              auto-rotate
+              src="https://static.wixstatic.com/3d/c183c2_18e44e28d63845639ec232a4c5328bd4.glb">
+</model-viewer>
+
+<script>
+  function setModel(type) {
+    const viewer = document.getElementById('garden-viewer');
+    switch (type) {
+      case 'potato':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_18e44e28d63845639ec232a4c5328bd4.glb';
+        break;
+      case 'vegetable':
+        viewer.src = 'models/vegetable_garden.glb';
+        break;
+      case 'herb':
+        viewer.src = 'models/herb_garden.glb';
+        break;
+      default:
+        console.error('Unknown garden type:', type);
+    }
+  }
+</script>
+
+</body>
+</html>
