@@ -89,19 +89,16 @@
       <div class="collapse navbar-collapse" id="navbarModelMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-            <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Other1')">Other1</button>
+            <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dianella')">Dianella</button>
           </li>
           <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-            <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Other2')">Other2</button>
+            <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Osteomeles')">Osteomeles</button>
           </li>
           <li class="nav-item mb-2 mb-lg-0 me-lg-1">
             <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dodonaea')">Dodonaea</button>
           </li>
           <li class="nav-item mb-2 mb-lg-0">
             <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Hibiscus')">Hibiscus</button>
-          </li>
-          <li class="nav-item mb-2 mb-lg-0">
-            <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Connor1')">Connor1</button>
           </li>
         </ul>
       </div>
@@ -170,17 +167,13 @@
   function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
     switch (type) {
-      case 'Other1':
+      case 'Dianella':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_16b756562bd747c6a5c725a30599a99a.glb';
-        currentInfo = 'Other1: Learn about the unique benefits and care instructions for a potato garden.';
+        currentInfo = 'Dianella: Learn about the unique benefits and care instructions for a potato garden.';
         break;
-      case 'Other2':
+      case 'Osteomeles':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_acec08f57d41441a9778c3ea4af97963.glb';
-        currentInfo = 'Other2: Learn about the unique benefits and care instructions for a potato garden.';
-        break;
-      case 'Connor1':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_7104eef6b7db448dafa2545914892234.glb';
-        currentInfo = 'Connor1: Learn about the unique benefits and care instructions for a potato garden.';
+        currentInfo = 'Osteomeles: Learn about the unique benefits and care instructions for a potato garden.';
         break;
       case 'Dodonaea':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_fe5307996b3e492ea858704080e05d48.glb';
