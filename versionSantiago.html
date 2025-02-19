@@ -52,17 +52,32 @@
       #fullscreen-button:hover {
           background: rgba(0, 0, 0, 0.7);
       }
+
+      .landing {
+        z-index: 1;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: white;
+        padding: 50px;
+      }
   </style>
 </head>
 <body class="d-flex flex-column" style="height: 100vh;">
-<div id="landing-page">
-  <h1>AR MODEL VIEWER</h1>
+
+
+<div class="landing" id="landing">
+  <h1>This is the landing</h1>
   <model-viewer
-    id="plant-viewer"
-    shadow-intensity="1"
-    src="https://static.wixstatic.com/3d/c183c2_fe5307996b3e492ea858704080e05d48.glb"
-    auto-rotate camera-controls disable-pan></model-viewer>
-  <button onclick="showGardenSelection()">View Here</button>
+          ar
+          ar-modes="scene-viewer webxr quick-look"
+          shadow-intensity="1"
+          auto-rotate
+          src="https://static.wixstatic.com/3d/c183c2_fe5307996b3e492ea858704080e05d48.glb"
+          max-camera-orbit= 'auto 100deg auto'>
+  </model-viewer>
+  <button onclick="dismissLanding()">Dismiss</button>
   <div id="qr-container">
     <p>Scan to see it in your yard:</p>
     <img src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
@@ -78,14 +93,14 @@
   <button onclick="showARModel('Hibiscus')">Hibiscus</button>
   <button onclick="showLandingPage()">Back</button>
 </div>
-<div id="ar-viewer" style="display:none;">
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div class="container-fluid">
-      <h1 class="navbar-brand">AR Garden Viewer</h1>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarModelMenu"
-              aria-controls="navbarModelMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container-fluid">
+    <h1 class="navbar-brand">AR Garden Viewer</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarModelMenu"
+            aria-controls="navbarModelMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
       <div class="collapse navbar-collapse" id="navbarModelMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item mb-2 mb-lg-0 me-lg-1">
@@ -102,6 +117,7 @@
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
 
@@ -144,6 +160,10 @@
   const fullscreenButton = document.getElementById('fullscreen-button');
   let currentInfo = 'Dodonaea';
 
+
+  function dismissLanding() {
+    document.getElementById('landing').style.display = 'none';
+
   function showGardenSelection() {
     document.getElementById('landing-page').style.display = 'none';
     document.getElementById('ar-viewer').style.display = 'none';
@@ -162,6 +182,7 @@
     document.getElementById('garden-selection').style.display = 'none';
     document.getElementById('ar-viewer').style.display = 'none';
     document.getElementById('landing-page').style.display = 'block';
+
   }
 
   function setModel(type) {
