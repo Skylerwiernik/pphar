@@ -58,8 +58,33 @@
           width: 100vw;
           height: 100vh;
           overflow: hidden;
-          background-color: white;
+          background-color: #74895D;
           padding: 50px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      }
+
+      #plant-viewer {
+          width: 300px;
+          height: 300px;
+          margin: 20px auto;
+      }
+      .btn-primary {
+          margin-top: 10px;
+      }
+      #qr-container {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          text-align: left;
+          display: none;
+      }
+      @media (min-width: 768px) {
+          #qr-container {
+              display: block;
+          }
       }
   </style>
 </head>
@@ -67,16 +92,17 @@
 
 <div class="landing" id="landing">
   <h1>This is the landing</h1>
-  <button onclick="dismissLanding()">Dismiss</button>
   <model-viewer
+    id="plant-viewer"
     shadow-intensity="1"
     auto-rotate
     src="https://static.wixstatic.com/3d/c183c2_fe5307996b3e492ea858704080e05d48.glb"
     max-camera-orbit= 'auto 100deg auto'>
   </model-viewer>
-  <div id="qr-container" >
+  <button class="btn btn-primary" onclick="dismissLanding()">Dismiss</button>
+  <div id="qr-container">
     <p>Scan to see it in your yard:</p>
-    <img src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
+    <img  style="max-width: 150px;max-height: 150px" src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
   </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
@@ -145,10 +171,12 @@
   let currentInfo = 'Dodonaea';
 
   function dismissLanding() {
-    document.getElementById('landing').style.display = 'none';
+    const landing = document.getElementById('landing');
+    landing.style.display = 'none';
+
   }
   function displayLanding() {
-    document.getElementById('landing').style.display = 'block';
+    document.getElementById('landing').style.display = 'flex';
   }
   function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
