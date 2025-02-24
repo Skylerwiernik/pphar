@@ -12,10 +12,6 @@
       .navbar-custom {
           background-color: #14265B;
       }
-      .navbar-brand {
-          font-size: 1.5rem; /* Increase text size */
-          font-weight: bold; /* Make it stand out */
-      }
 
       #descriptionTitle {
           font-size: 1.5rem; /* Adjust size */
@@ -106,7 +102,7 @@
               display: flex;
           }
           #landing h1 {
-              font-size: 8rem;
+              font-size: 9rem;
           }
 
           #landing {
@@ -115,7 +111,7 @@
       }
 
       .landing {
-          z-index: 1;
+          z-index: 2;
           position: absolute;
           width: 100vw;
           height: 100vh;
@@ -136,6 +132,8 @@
           text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
       }
 
+      .navbar-menu-btn,
+      .back-btn,
       .custom-btn {
           background-color: #faeb8c; /* Soft pastel yellow */
           color: #5a5a5a;
@@ -148,9 +146,78 @@
           transition: background-color 0.3s, transform 0.2s;
       }
 
+      .navbar-menu-btn:hover,
+      .back-btn:hover,
       .custom-btn:hover {
           background-color: #eddf47; /* Darker yellow on hover */
           transform: scale(1.05);
+      }
+
+      .menu {
+          z-index: 1;
+          position: absolute;
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          background-color: #F8F2E6;
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+      }
+
+      .morning-model-btn {
+          background-color: #d4e6ed;
+          color: black;
+          border: none;
+          padding: 10px 100px;
+          font-size: 30px;
+          font-weight: bold;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .full-model-btn {
+          background-color: #b4d0ee;
+          color: black;
+          border: none;
+          padding: 10px 135px;
+          font-size: 30px;
+          font-weight: bold;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .evening-model-btn {
+          background-color: #8fa3ee;
+          color: black;
+          border: none;
+          padding: 10px 100px;
+          font-size: 30px;
+          font-weight: bold;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .morning-model-btn:hover,
+      .full-model-btn:hover,
+      .evening-model-btn:hover {
+          transform: scale(1.05);
+          background-color: #3b5998;
+      }
+
+      #menu p {
+          font-size: 2rem;
+          font-family: "Exo 2", sans-serif;
+          font-weight: bold;
+          text-align: center;
+          justify-content: center;
+          padding: 10px 20px;
       }
   </style>
 
@@ -174,12 +241,19 @@
     <p2> Scan Below: </p2>
     <img class="qr-code" src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
   </div>
-
-
 </div>
+
+<div class="menu" id="menu">
+      <p>Take a look at our gardens at different times of the day: </p>
+      <button class="morning-model-btn" onclick="dismissMenu()">Morning Sun!</button>
+      <button class="full-model-btn" onclick="dismissMenu()">Full Sun!</button>
+      <button class="evening-model-btn" onclick="dismissMenu()">Evening Sun!</button>
+      <button class="back-btn" onclick="displayLanding()">Back</button>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
   <div class="container-fluid">
-    <button type="button" onclick="displayLanding()" class="navbar-brand btn">AR Garden Viewer</button>
+    <button class="navbar-menu-btn" onclick="displayMenu()" >Menu</button>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarModelMenu"
             aria-controls="navbarModelMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -242,6 +316,7 @@
   const fullscreenButton = document.getElementById('fullscreen-button');
   let currentInfo = 'Dodonaea';
 
+  /* the following functions control the switching between different "pages"*/
   function dismissLanding() {
 
     const landing = document.getElementById('landing');
@@ -252,6 +327,16 @@
     document.getElementById('landing').style.display = 'flex';
 
   }
+  function dismissMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = 'none';
+  }
+
+  function displayMenu(){
+    document.getElementById('menu').style.display = 'flex';
+  }
+/*  END OF "PAGE" FUNCTIONS */
+
   function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
     switch (type) {
