@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
   <style>
       .navbar-custom {
-          background-color: #14265B;
+          background-color: #40916c;
       }
 
       #descriptionTitle {
@@ -116,7 +116,7 @@
           width: 100vw;
           height: 100vh;
           overflow: hidden;
-          background-color: #FFFFE0;
+          background-color: #FFFFED;
           padding: 5px;
           display: flex;
           flex-direction: column;
@@ -159,7 +159,7 @@
           width: 100vw;
           height: 100vh;
           overflow: hidden;
-          background-color: #F8F2E6;
+          background-color: #FFFFED;
           padding: 5px;
           display: flex;
           flex-direction: column;
@@ -168,48 +168,81 @@
           gap: 15px;
       }
 
-      .morning-model-btn {
-          background-color: #d4e6ed;
-          color: black;
-          border: none;
-          padding: 10px 100px;
-          font-size: 30px;
+      .temp-model-btn {
+          width: 180px; /* fixed width */
+          height: 50px; /* fixed height for uniformity */
+          padding: 10px; /* Ensures spacing inside the button */
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          font-size: 1.2rem;
           font-weight: bold;
-          border-radius: 8px;
+          color: #1b4332;
+
+          background-color: #d8f3dc;
+          border: 2px solid #40916c;
+          border-radius: 8px; /* Rounded edges */
+
+          transition: all 0.3s ease-in-out;
           cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
+
+          margin: 10px; /* this is specific spcing between btns and is diff from gap */
       }
 
-      .full-model-btn {
-          background-color: #b4d0ee;
-          color: black;
-          border: none;
-          padding: 10px 135px;
-          font-size: 30px;
-          font-weight: bold;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
+      .temp-model-btn:hover {
+          background-color: #b7e4c7; /* Lighter blue on hover */
+          transform: scale(1.05); /* Slight pop effect */
       }
 
-      .evening-model-btn {
-          background-color: #8fa3ee;
-          color: black;
-          border: none;
-          padding: 10px 100px;
-          font-size: 30px;
-          font-weight: bold;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
-      }
 
-      .morning-model-btn:hover,
-      .full-model-btn:hover,
-      .evening-model-btn:hover {
-          transform: scale(1.05);
-          background-color: #3b5998;
-      }
+      /* temporarily commenting these out till we have full garden model function
+          .morning-model-btn {
+              background-color: #d4e6ed;
+              color: black;
+              border: none;
+              padding: 10px 100px;
+              font-size: 30px;
+              font-weight: bold;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s, transform 0.2s;
+          }
+
+          .full-model-btn {
+              background-color: #b4d0ee;
+              color: black;
+              border: none;
+              padding: 10px 135px;
+              font-size: 30px;
+              font-weight: bold;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s, transform 0.2s;
+          }
+
+          .evening-model-btn {
+              background-color: #8fa3ee;
+              color: black;
+              border: none;
+              padding: 10px 100px;
+              font-size: 30px;
+              font-weight: bold;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s, transform 0.2s;
+          }
+
+          .morning-model-btn:hover,
+          .full-model-btn:hover,
+          .evening-model-btn:hover {
+              transform: scale(1.05);
+              background-color: #3b5998;
+          }
+
+       */
 
       #menu p {
           font-size: 2rem;
@@ -244,11 +277,15 @@
 </div>
 
 <div class="menu" id="menu">
-      <p>Take a look at our gardens at different times of the day: </p>
-      <button class="morning-model-btn" onclick="dismissMenu('MS')">Morning Sun!</button>
-      <button class="full-model-btn" onclick="dismissMenu('FS')">Full Sun!</button>
-      <button class="evening-model-btn" onclick="dismissMenu('ES')">Evening Sun!</button>
-      <button class="back-btn" onclick="displayLanding()">Back</button>
+  <p>Look At The Plants In Our Gardens: </p>
+  <div class="buttons">
+    <button class="temp-model-btn" onclick="dismissMenu('Dianella')">Dianella</button>
+    <button class="temp-model-btn" onclick="dismissMenu('Osteomeles')">Osteomeles</button>
+    <button class="temp-model-btn" onclick="dismissMenu('Dodonaea')">Dodonaea</button>
+    <button class="temp-model-btn" onclick="dismissMenu('Hibiscus')">Hibiscus</button>
+    <button class="temp-model-btn" onclick="dismissMenu('Carex')">Carex</button>
+  </div>
+  <button class="back-btn" onclick="displayLanding()">Back</button>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
@@ -261,13 +298,19 @@
     <div class="collapse navbar-collapse" id="navbarModelMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dianella')">Dianella</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Osteomeles')">Osteomeles</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('ES')">Evening Sun</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dodonaea')">Dodonaea</button>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0">
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Hibiscus')">Hibiscus</button>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0">
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Carex')">Carex</button>
         </li>
       </ul>
     </div>
@@ -276,14 +319,14 @@
 
 <div class="container mt-3 details-container">
   <div class="d-flex justify-content-center align-items-center">
-    <h5 class="mb-0 text-center" id="descriptionTitle">Garden Details</h5>
+    <h5 class="mb-0 text-center" id="descriptionTitle">Plant Details</h5>
     <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#descriptionCollapse"
             aria-expanded="false" aria-controls="descriptionCollapse">
       <i class="bi bi-chevron-down"></i>
     </button>
   </div>
   <div class="collapse" id="descriptionCollapse">
-    <div class="card card-body text-center">
+    <div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
       <p id="descriptionText">
         This will be filled with text describing the garden benefits and features.
       </p>
@@ -301,7 +344,9 @@
     shadow-intensity="1"
     auto-rotate
     src="https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740374259844_morningSunCOMPRESSED.glb?alt=media&token=5efe2faf-bcd8-4804-ab1b-fcb2bf70abb2"
-    camera-orbit="0deg 45deg 1m"
+    camera-orbit="0deg 45deg auto"
+    ar-scale="fixed"
+    scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
   </model-viewer>
 
@@ -353,6 +398,21 @@
 
   async function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
+    /*
+    <button class="morning-model-btn" onclick="dismissMenu('MS')">Morning Sun!</button>
+      <button class="full-model-btn" onclick="dismissMenu('FS')">Full Sun!</button>
+      <button class="evening-model-btn" onclick="dismissMenu('ES')">Evening Sun!</button>
+
+    <li class="nav-item mb-2 mb-lg-0 me-lg-1">
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0 me-lg-1">
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0 me-lg-1">
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('ES')">Evening Sun</button>
+        </li>
+
     viewer.src = ''; // Clear the current model
 
     let modelUrl;
@@ -374,7 +434,31 @@
         return;
     }
 
-    viewer.src = modelUrl;
+    viewer.src = modelUrl;*/
+    switch (type) {
+      case 'Dianella':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_2e4ae6c79d884e549f02154f263acc5a.glb';
+        currentInfo = 'Dianella: A non-woody, spreading, grass-like perennial that typically grows 1–3 feet tall with a 3–5 foot spread. with dark green leaves (12–40 inches long), pale blue–white flowers, and attractive blue–purple fruits.';
+        break;
+      case 'Osteomeles':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb';
+        currentInfo = 'Osteomeles: A sprawling shrub growing from a low ground cover to an upright shrub reaching up to 10 feet tall, with a spread of 4–10 feet.  It has  glossy dark green leaves and fragrant white flowers that bloom in winter and spring.\n';
+        break;
+      case 'Carex':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_9830d86ad8d54b68bb913538600e8c13.glb';
+        currentInfo = 'A perennial, clumping sedge that typically growing 1–2.5 feet tall with a spread of 2 feet or more. It has coarse, dark green leaves (6–40 inches long) with sharp edges and produces flowers followed by yellow seed spikes resembling small corn cobs.\n';
+        break;
+      case 'Dodonaea':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_6727301ddf5547aeb0497a52a89067cc.glb';
+        currentInfo = 'Dodonaea: A  shrub or small tree growing from 2 to over 10 feet tall with a spread of 5–15 feet. It has green leaves and greenish-white to reddish';
+        break;
+      case 'Hibiscus':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_f7170fcb3df34bfdb5da9bd274fa18a6.glb';
+        currentInfo = 'Hibiscus: Explore the vibrant characteristics and advantages of a Hibiscus garden. Some varieties have red-veined leaves, and flowers may have a red staminal column\n';
+        break;
+      default:
+        console.error('Unknown garden type:', type);
+    }
     updateDescription();
 
     // Wait for the model to fully load

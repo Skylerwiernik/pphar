@@ -113,8 +113,9 @@
     auto-rotate
     ar-scale="fixed"
     scale="0.5 0.5 0.5"
+    camera-orbit="auto 45deg auto"
     src="https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb"
-    max-camera-orbit= 'auto 100deg auto'>
+    max-camera-orbit= 'auto 90deg auto'>
   </model-viewer>
 
   <!-- Fullscreen button in corner -->
@@ -131,23 +132,23 @@
     switch (type) {
       case 'Dianella':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_2e4ae6c79d884e549f02154f263acc5a.glb';
-        currentInfo = 'Dianella: Learn about the unique benefits and care instructions for a potato garden.';
+        currentInfo = 'Dianella: A non-woody, spreading, grass-like perennial that typically grows 1–3 feet tall with a 3–5 foot spread. with dark green leaves (12–40 inches long), pale blue–white flowers, and attractive blue–purple fruits.';
         break;
       case 'Osteomeles':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb';
-        currentInfo = 'Osteomeles: Learn about the unique benefits and care instructions for a potato garden.';
+        currentInfo = 'Osteomeles: A sprawling shrub growing from a low ground cover to an upright shrub reaching up to 10 feet tall, with a spread of 4–10 feet.  It has  glossy dark green leaves and fragrant white flowers that bloom in winter and spring.\n';
         break;
       case 'Carex':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_9830d86ad8d54b68bb913538600e8c13.glb';
-        currentInfo = 'Garden: Learn about the unique benefits and care instructions for a potato garden.';
+        currentInfo = 'A perennial, clumping sedge that typically growing 1–2.5 feet tall with a spread of 2 feet or more. It has coarse, dark green leaves (6–40 inches long) with sharp edges and produces flowers followed by yellow seed spikes resembling small corn cobs.\n';
         break;
       case 'Dodonaea':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_6727301ddf5547aeb0497a52a89067cc.glb';
-        currentInfo = 'Dodonaea: Discover the benefits and features of the Dodonaea garden setup.';
+        currentInfo = 'Dodonaea: A  shrub or small tree growing from 2 to over 10 feet tall with a spread of 5–15 feet. It has green leaves and greenish-white to reddish';
         break;
       case 'Hibiscus':
         viewer.src = 'https://static.wixstatic.com/3d/c183c2_f7170fcb3df34bfdb5da9bd274fa18a6.glb';
-        currentInfo = 'Hibiscus: Explore the vibrant characteristics and advantages of a Hibiscus garden.';
+        currentInfo = 'Hibiscus: Explore the vibrant characteristics and advantages of a Hibiscus garden. Some varieties have red-veined leaves, and flowers may have a red staminal column\n';
         break;
       default:
         console.error('Unknown garden type:', type);
