@@ -71,19 +71,13 @@
     <div class="collapse navbar-collapse" id="navbarModelMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dianella')">Dianella</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Osteomeles')">Osteomeles</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dodonaea')">Dodonaea</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Hibiscus')">Hibiscus</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Carex')">Carex</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('ES')">Evening Sun</button>
         </li>
       </ul>
     </div>
@@ -119,7 +113,7 @@
     ar-scale="fixed"
     scale="0.5 0.5 0.5"
     camera-orbit="auto 45deg auto"
-    src="https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb"
+    src="https://static.wixstatic.com/3d/c183c2_df55cc504b704b2fb67229d6a60d48b9.glb"
     max-camera-orbit= 'auto 90deg auto'>
   </model-viewer>
 
@@ -134,30 +128,28 @@
 
   function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
+    viewer.src = ''; // Clear the current model
+
+    let modelUrl;
     switch (type) {
-      case 'Dianella':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_2e4ae6c79d884e549f02154f263acc5a.glb';
-        currentInfo = 'Dianella: A non-woody, spreading, grass-like perennial that typically grows 1–3 feet tall with a 3–5 foot spread. with dark green leaves (12–40 inches long), pale blue–white flowers, and attractive blue–purple fruits.';
+      case 'ES':
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_2530f1ea3ba14bd29971fb555cecce3e.glb';
+        currentInfo = 'Evening Sun: Learn about the unique benefits and care instructions for a potato garden.';
         break;
-      case 'Osteomeles':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb';
-        currentInfo = 'Osteomeles: A sprawling shrub growing from a low ground cover to an upright shrub reaching up to 10 feet tall, with a spread of 4–10 feet.  It has  glossy dark green leaves and fragrant white flowers that bloom in winter and spring.\n';
+      case 'FS':
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_0cb73f63fd1e48d69b71974a58eebb2c.glb';
+        currentInfo = 'Full Sun: Learn about the unique benefits and care instructions for a potato garden.';
         break;
-      case 'Carex':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_9830d86ad8d54b68bb913538600e8c13.glb';
-        currentInfo = 'A perennial, clumping sedge that typically growing 1–2.5 feet tall with a spread of 2 feet or more. It has coarse, dark green leaves (6–40 inches long) with sharp edges and produces flowers followed by yellow seed spikes resembling small corn cobs.\n';
-        break;
-      case 'Dodonaea':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_6727301ddf5547aeb0497a52a89067cc.glb';
-        currentInfo = 'Dodonaea: A  shrub or small tree growing from 2 to over 10 feet tall with a spread of 5–15 feet. It has green leaves and greenish-white to reddish';
-        break;
-      case 'Hibiscus':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_f7170fcb3df34bfdb5da9bd274fa18a6.glb';
-        currentInfo = 'Hibiscus: Explore the vibrant characteristics and advantages of a Hibiscus garden. Some varieties have red-veined leaves, and flowers may have a red staminal column\n';
+      case 'MS':
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_df55cc504b704b2fb67229d6a60d48b9.glb';
+        currentInfo = 'Morning Sun: Discover the benefits and features of the Dodonaea garden setup.';
         break;
       default:
         console.error('Unknown garden type:', type);
+        return;
     }
+
+    viewer.src = modelUrl;
     updateDescription();
   }
 
