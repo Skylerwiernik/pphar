@@ -181,7 +181,7 @@
           padding: 10px 20px;
       }
 
-      .temp-model-btn {
+      .model-btns {
           width: 180px; /* fixed width */
           height: 50px; /* fixed height for uniformity */
           padding: 10px; /* Ensures spacing inside the button */
@@ -202,60 +202,28 @@
           transition: all 0.3s ease-in-out;
           cursor: pointer;
 
-          margin: 10px; /* this is specific spcing between btns and is diff from gap */
+          margin: 10px; /* this is specific spacing between btns and is diff from gap */
       }
 
-      .temp-model-btn:hover {
+      .model-btns:hover {
           background-color: #b7e4c7; /* Lighter blue on hover */
           transform: scale(1.05); /* Slight pop effect */
       }
 
-
-      /* temporarily commenting these out till we have full garden model function
-          .morning-model-btn {
-              background-color: #d4e6ed;
-              color: black;
-              border: none;
-              padding: 10px 100px;
-              font-size: 30px;
-              font-weight: bold;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s, transform 0.2s;
-          }
-
-          .full-model-btn {
-              background-color: #b4d0ee;
-              color: black;
-              border: none;
-              padding: 10px 135px;
-              font-size: 30px;
-              font-weight: bold;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s, transform 0.2s;
-          }
-
-          .evening-model-btn {
-              background-color: #8fa3ee;
-              color: black;
-              border: none;
-              padding: 10px 100px;
-              font-size: 30px;
-              font-weight: bold;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s, transform 0.2s;
-          }
-
-          .morning-model-btn:hover,
-          .full-model-btn:hover,
-          .evening-model-btn:hover {
-              transform: scale(1.05);
-              background-color: #3b5998;
-          }
-
-       */
+      .custom-ar-button {
+          background-color: #40916c; /* Custom background */
+          color: white;              /* Text color */
+          padding: 12px 24px;        /* Button size */
+          border: none;              /* Remove border */
+          border-radius: 20px;       /* Rounded corners */
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          position: absolute;
+          bottom: 10px;              /* Position at the bottom */
+          right: 10px;
+          z-index: 0.5;               /* Ensure it's above other elements */
+      }
   </style>
 
 </head>
@@ -276,18 +244,16 @@
   <div id="qr-container">
     <p1> Want to see how it looks in your yard? </p1>
     <p2> Scan Below: </p2>
-    <img class="qr-code" src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
+    <img class="qr-code" src="https://static.wixstatic.com/media/47eab7_3512bc49286a4c99830494328d07beea~mv2.png" alt="QR Code">
   </div>
 </div>
 
 <div class="menu" id="menu">
-  <p>Look At The Plants In Our Gardens: </p>
+  <p>Look At Our Different Garden Models: </p>
   <div class="buttons">
-    <button class="temp-model-btn" onclick="dismissMenu('Dianella')">Dianella</button>
-    <button class="temp-model-btn" onclick="dismissMenu('Osteomeles')">Osteomeles</button>
-    <button class="temp-model-btn" onclick="dismissMenu('Dodonaea')">Dodonaea</button>
-    <button class="temp-model-btn" onclick="dismissMenu('Hibiscus')">Hibiscus</button>
-    <button class="temp-model-btn" onclick="dismissMenu('Carex')">Carex</button>
+    <button class="model-btns" onclick="dismissMenu('MS')">Morning Sun</button>
+    <button class="model-btns" onclick="dismissMenu('FS')">Full Sun</button>
+    <button class="model-btns" onclick="dismissMenu('AS')">Afternoon Sun</button>
   </div>
   <button class="back-btn" onclick="displayLanding()">Back</button>
 </div>
@@ -302,19 +268,13 @@
     <div class="collapse navbar-collapse" id="navbarModelMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dianella')">Dianella</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Osteomeles')">Osteomeles</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Dodonaea')">Dodonaea</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Hibiscus')">Hibiscus</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('Carex')">Carex</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('AS')">Afternoon Sun</button>
         </li>
       </ul>
     </div>
@@ -323,7 +283,7 @@
 
 <div class="container mt-3 details-container">
   <div class="d-flex justify-content-center align-items-center">
-    <h5 class="mb-0 text-center" id="descriptionTitle">Plant Details</h5>
+    <h5 class="mb-0 text-center" id="descriptionTitle">Garden Details</h5>
     <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#descriptionCollapse"
             aria-expanded="false" aria-controls="descriptionCollapse">
       <i class="bi bi-chevron-down"></i>
@@ -347,17 +307,18 @@
     environment-image="neutral"
     shadow-intensity="1"
     auto-rotate
-    src="https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740374259844_morningSunCOMPRESSED.glb?alt=media&token=5efe2faf-bcd8-4804-ab1b-fcb2bf70abb2"
     camera-orbit="0deg 45deg auto"
     ar-scale="fixed"
     scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
+    <button slot="ar-button" class="custom-ar-button">
+      View In Your Space!
+    </button>
   </model-viewer>
 
   <!-- Fullscreen button in corner -->
   <button id="fullscreen-button" title="Toggle Fullscreen">⛶</button>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const fullscreenButton = document.getElementById('fullscreen-button');
@@ -365,104 +326,44 @@
 
   /* the following functions control the switching between different "pages"*/
   function dismissLanding() {
-
     const landing = document.getElementById('landing');
     landing.style.display = 'none';
-
   }
+
   function displayLanding() {
     document.getElementById('landing').style.display = 'flex';
-
   }
+
   function dismissMenu(model) {
-    /*let element;
-    switch (model) {
-      case 'MS':
-        element = document.getElementsByClassName('morning-model-btn');
-        break;
-      case 'FS':
-        element = document.getElementsByClassName('full-model-btn');
-        break;
-      case 'ES':
-        element = document.getElementsByClassName('evening-model-btn');
-        break;
-    }
-    let color = element[0].style.background;
-    element[0].style.background = '#ff5555';*/
     setModel(model);
     const menu = document.getElementById('menu');
     menu.style.display = 'none';
-    //element[0].style.background = color;
   }
 
   function displayMenu(){
     document.getElementById('menu').style.display = 'flex';
   }
-/*  END OF "PAGE" FUNCTIONS */
 
   async function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
-    /*
-    <button class="morning-model-btn" onclick="dismissMenu('MS')">Morning Sun!</button>
-      <button class="full-model-btn" onclick="dismissMenu('FS')">Full Sun!</button>
-      <button class="evening-model-btn" onclick="dismissMenu('ES')">Evening Sun!</button>
 
-    <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('ES')">Evening Sun</button>
-        </li>
-
-    viewer.src = ''; // Clear the current model
-
-    let modelUrl;
     switch (type) {
-      case 'ES':
-        modelUrl = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740374332412_afternoonSunCOMPRESSED.glb?alt=media&token=c69b2416-3056-4fca-a4d1-cded9a404f16';
+      case 'AS':
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_2530f1ea3ba14bd29971fb555cecce3e.glb';
         currentInfo = 'This Afternoon Sun Native Garden is designed to thrive in intense sunlight and dry conditions, featuring a diverse mix of drought-tolerant native Hawaiian plants that provide soil stabilization, habitat support, and seasonal interest. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) creates dense, low-growing foliage. Osteomeles anthyllidifolia (Ulei) brings fragrant white flowers for pollinators, while Dodonaea viscosa (A‘ali‘i) contributes reddish seed capsules and height variation. A single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers.';
         break;
       case 'FS':
-        modelUrl = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740375532656_fullSunFINAL.glb?alt=media&token=e42d088d-110c-493e-b323-276a2d1ed410';
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_0cb73f63fd1e48d69b71974a58eebb2c.glb';
         currentInfo = 'This Full Sun Native Garden features a resilient mix of native Hawaiian plants, chosen for their drought tolerance, biodiversity support, and cultural significance. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage, while Osteomeles anthyllidifolia (Ulei) adds low ground cover and fragrant white flowers that bloom in the winter and spring. Dodonaea viscosa (A‘ali‘i) offers height and seasonal color, and a single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers and dark green foliage. Designed for minimal maintenance, this sustainable landscape enhances soil health, prevents erosion, and celebrates Hawaiʻi’s native flora.';
         break;
       case 'MS':
-        modelUrl = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740374259844_morningSunCOMPRESSED.glb?alt=media&token=5efe2faf-bcd8-4804-ab1b-fcb2bf70abb2';
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_df55cc504b704b2fb67229d6a60d48b9.glb';
         currentInfo = 'This Morning Sun Native Garden features a carefully selected mix of native Hawaiian plants, designed for partial sun conditions while promoting biodiversity, soil stability, and ecological resilience. A base of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage. Osteomeles anthyllidifolia (Ulei) introduces fragrant white flowers, supporting pollinators and contributing to seasonal variation, while Dodonaea viscosa (A‘ali‘i) adds height and reddish seed capsules, enhancing visual interest and reinforcing the garden’s drought resilience.';
         break;
       default:
         console.error('Unknown garden type:', type);
-        return;
     }
 
-    viewer.src = modelUrl;*/
-    switch (type) {
-      case 'Dianella':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_2e4ae6c79d884e549f02154f263acc5a.glb';
-        currentInfo = 'Dianella: A non-woody, spreading, grass-like perennial that typically grows 1–3 feet tall with a 3–5 foot spread. with dark green leaves (12–40 inches long), pale blue–white flowers, and attractive blue–purple fruits.';
-        break;
-      case 'Osteomeles':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_78e6e2ca3ddf4726af6f4a8212780e2f.glb';
-        currentInfo = 'Osteomeles: A sprawling shrub growing from a low ground cover to an upright shrub reaching up to 10 feet tall, with a spread of 4–10 feet.  It has  glossy dark green leaves and fragrant white flowers that bloom in winter and spring.\n';
-        break;
-      case 'Carex':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_d64c464ad1544be997de98be9e505cc2.glb';
-        currentInfo = 'A perennial, clumping sedge that typically growing 1–2.5 feet tall with a spread of 2 feet or more. It has coarse, dark green leaves (6–40 inches long) with sharp edges and produces flowers followed by yellow seed spikes resembling small corn cobs.\n';
-        break;
-      case 'Dodonaea':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_6727301ddf5547aeb0497a52a89067cc.glb';
-        currentInfo = 'Dodonaea: A  shrub or small tree growing from 2 to over 10 feet tall with a spread of 5–15 feet. It has green leaves and greenish-white to reddish';
-        break;
-      case 'Hibiscus':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_f7170fcb3df34bfdb5da9bd274fa18a6.glb';
-        currentInfo = 'Hibiscus: Explore the vibrant characteristics and advantages of a Hibiscus garden. Some varieties have red-veined leaves, and flowers may have a red staminal column\n';
-        break;
-      default:
-        console.error('Unknown garden type:', type);
-    }
     updateDescription();
 
     // Wait for the model to fully load
