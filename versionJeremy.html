@@ -209,6 +209,23 @@
           background-color: #b7e4c7; /* Lighter blue on hover */
           transform: scale(1.05); /* Slight pop effect */
       }
+
+      /* Experimental Code */
+
+      .custom-ar-button {
+          background-color: #40916c; /* Custom background */
+          color: white;              /* Text color */
+          padding: 12px 24px;        /* Button size */
+          border: none;              /* Remove border */
+          border-radius: 20px;       /* Rounded corners */
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          position: absolute;
+          bottom: 10px;              /* Position at the bottom */
+          right: 10px;
+          z-index: 0.5;               /* Ensure it's above other elements */
+      }
   </style>
 
 </head>
@@ -227,7 +244,7 @@
   <button class="custom-btn" onclick="dismissLanding()">View Here!</button>
 
   <div id="qr-container">
-    <p1> Want to see how it looks in your yard? </p1>
+    <p1> Want To See How It Looks In Your Yard? </p1>
     <p2> Scan Below: </p2>
     <img class="qr-code" src="https://static.wixstatic.com/media/47eab7_3512bc49286a4c99830494328d07beea~mv2.png" alt="QR Code">
   </div>
@@ -293,9 +310,10 @@
     shadow-intensity="1"
     auto-rotate
     camera-orbit="0deg 45deg auto"
-    ar-scale="fixed"
+    ar-scale="auto"
     scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
+    <button slot="ar-button" class="custom-ar-button"> View In Your Garden</button>
   </model-viewer>
 
   <!-- Fullscreen button in corner -->
@@ -337,7 +355,7 @@
         currentInfo = 'This Afternoon Sun Native Garden is designed to thrive in intense sunlight and dry conditions, featuring a diverse mix of drought-tolerant native Hawaiian plants that provide soil stabilization, habitat support, and seasonal interest. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) creates dense, low-growing foliage. Osteomeles anthyllidifolia (Ulei) brings fragrant white flowers for pollinators, while Dodonaea viscosa (A‘ali‘i) contributes reddish seed capsules and height variation. A single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers.';
         break;
       case 'FS':
-        viewer.src = 'https://static.wixstatic.com/3d/c183c2_0cb73f63fd1e48d69b71974a58eebb2c.glb';
+        viewer.src = 'https://static.wixstatic.com/3d/c183c2_9410dd98a2464ec6a8f29a65747cea76.glb';
         currentInfo = 'This Full Sun Native Garden features a resilient mix of native Hawaiian plants, chosen for their drought tolerance, biodiversity support, and cultural significance. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage, while Osteomeles anthyllidifolia (Ulei) adds low ground cover and fragrant white flowers that bloom in the winter and spring. Dodonaea viscosa (A‘ali‘i) offers height and seasonal color, and a single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers and dark green foliage. Designed for minimal maintenance, this sustainable landscape enhances soil health, prevents erosion, and celebrates Hawaiʻi’s native flora.';
         break;
       case 'MS':
