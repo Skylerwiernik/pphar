@@ -45,6 +45,7 @@
           border-radius: 4px;
           cursor: pointer;
           transition: background 0.3s ease;
+          display: none;
       }
 
       #fullscreen-button:hover {
@@ -112,6 +113,11 @@
           #menu {
               gap: 15px;
           }
+
+          #fullscreen-button {
+              display: block;
+          }
+
       }
 
       .landing {
@@ -296,6 +302,15 @@
           display: none;
       }
 
+      .loading {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 0.5;
+          display: none;
+      }
+
   </style>
 
 </head>
@@ -338,7 +353,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarModelMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-2">
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
           <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('MS')">Morning Sun</button>
         </li>
@@ -371,6 +386,11 @@
 </div>
 
 <div id="viewer-container" class="p-0">
+  <div id="loading" class="loading">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
   <model-viewer
     id="garden-viewer"
     ar
@@ -382,7 +402,7 @@
     ar-scale="fixed"
     scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
-    <div itemtype="button" slot="ar-button" class="custom-ar-button"> View In Your Space!</div>
+    <div itemtype="button" onclick="loader()" slot="ar-button" class="custom-ar-button"> View In Your Space!</div>
 
     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
@@ -417,6 +437,8 @@
 <script>
   const fullscreenButton = document.getElementById('fullscreen-button');
   let currentInfo = 'FS';
+  const arViewer = document.getElementById('garden-viewer');
+  const loadingElement = document.getElementById('loading');
 
   /* the following functions control the switching between different "pages"*/
   function dismissLanding() {
@@ -437,6 +459,69 @@
   function displayMenu(){
     document.getElementById('menu').style.display = 'flex';
   }
+
+  /*// Function to log messages to screen for debugging
+  const logElement = document.createElement('div');
+  logElement.style.position = 'fixed';
+  logElement.style.bottom = '10px';
+  logElement.style.left = '10px';
+  logElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+  logElement.style.color = 'white';
+  logElement.style.padding = '5px 10px';
+  logElement.style.zIndex = '9999';
+  document.body.appendChild(logElement);
+
+  function log(message) {
+    logElement.innerText = message;
+  }*/
+
+  // Promise-based loading function
+  function loading() {
+    return new Promise((resolve, reject) => {
+      if (!arViewer) {
+        reject('AR viewer not found');
+        return;
+      }
+
+      // Show loading screen
+      loadingElement.style.display = 'flex';
+      //log('Loading: Shown');
+
+      // Set a 30-second timeout to show reload recommendation
+      const timeout = setTimeout(() => {
+        //log('AR session not started. Consider reloading the page.');
+        alert('If an AR session has not started, please reload the page.');
+        loadingElement.style.display = 'none';
+      }, 30000);
+
+      // Check for AR session every 500ms
+      const interval = setInterval(() => {
+        if (arViewer.arStatus === 'session-started') {
+          clearInterval(interval);
+          clearTimeout(timeout);
+
+          //log('AR session started');
+
+          // Hide loading when AR session ends
+          arViewer.addEventListener('ar-status', (event) => {
+            if (event.detail.status === 'not-presenting') {
+              loadingElement.style.display = 'none';
+              //log('Loading: Hidden');
+            }
+          });
+
+          resolve('AR session started');
+        }
+      }, 500);
+    });
+  }
+
+  // Usage of the loading function
+  function loader() {
+    loading();//.then((message) => log(message)).catch((error) => log(error));
+  }
+
+
   /*  END OF "PAGE" FUNCTIONS */
 
   /* START OF MODEL FUNCTIONS */
