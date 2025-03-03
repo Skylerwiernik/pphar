@@ -130,7 +130,7 @@
 
       .landing h1 {
           font-size: 3rem;
-          color: #a1c6b5;
+          color: #40916c;
           font-family: "Exo 2", sans-serif;
           text-align: center;
           text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
@@ -173,7 +173,7 @@
       }
 
       #menu p {
-          font-size: 2.5rem;
+          font-size: 1.5rem;
           font-family: "Exo 2", sans-serif;
           font-weight: bold;
           text-align: center;
@@ -181,7 +181,7 @@
           padding: 10px 20px;
       }
 
-      .temp-model-btn {
+      .model-btns {
           width: 180px; /* fixed width */
           height: 50px; /* fixed height for uniformity */
           padding: 10px; /* Ensures spacing inside the button */
@@ -202,57 +202,27 @@
           transition: all 0.3s ease-in-out;
           cursor: pointer;
 
-          margin: 10px; /* this is specific spcing between btns and is diff from gap */
+          margin: 10px; /* this is specific spacing between btns and is diff from gap */
       }
 
-      .temp-model-btn:hover {
+      .model-btns:hover {
           background-color: #b7e4c7; /* Lighter blue on hover */
           transform: scale(1.05); /* Slight pop effect */
       }
 
-
-      /*temporarily commenting these out till we have full garden model function*/
-      .morning-model-btn {
-          background-color: #d4e6ed;
-          color: black;
-          border: none;
-          padding: 10px 100px;
-          font-size: 30px;
+      .custom-ar-button {
+          background-color: #40916c; /* Custom background */
+          color: white;              /* Text color */
+          padding: 12px 24px;        /* Button size */
+          border: none;              /* Remove border */
+          border-radius: 20px;       /* Rounded corners */
+          font-size: 16px;
           font-weight: bold;
-          border-radius: 8px;
           cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
-      }
-
-      .full-model-btn {
-          background-color: #b4d0ee;
-          color: black;
-          border: none;
-          padding: 10px 135px;
-          font-size: 30px;
-          font-weight: bold;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
-      }
-
-      .evening-model-btn {
-          background-color: #8fa3ee;
-          color: black;
-          border: none;
-          padding: 10px 100px;
-          font-size: 30px;
-          font-weight: bold;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s, transform 0.2s;
-      }
-
-      .morning-model-btn:hover,
-      .full-model-btn:hover,
-      .evening-model-btn:hover {
-          transform: scale(1.05);
-          background-color: #3b5998;
+          position: absolute;
+          bottom: 10px;              /* Position at the bottom */
+          right: 10px;
+          z-index: 0.5;               /* Ensure it's above other elements */
       }
 
       #controls {
@@ -326,7 +296,6 @@
           display: none;
       }
 
-
   </style>
 
 </head>
@@ -338,24 +307,26 @@
     id="plant-viewer"
     shadow-intensity="1"
     auto-rotate
-    src="https://static.wixstatic.com/3d/c183c2_fe5307996b3e492ea858704080e05d48.glb"
+    src="https://static.wixstatic.com/3d/c183c2_6727301ddf5547aeb0497a52a89067cc.glb"
     max-camera-orbit= 'auto 100deg auto'>
   </model-viewer>
 
   <button class="custom-btn" onclick="dismissLanding()">View Here!</button>
 
   <div id="qr-container">
-    <p1> Want to see how it looks in your yard? </p1>
+    <p1> Want To See How It Looks In Your Yard? </p1>
     <p2> Scan Below: </p2>
-    <img class="qr-code" src="https://static.wixstatic.com/media/c183c2_fb3c1cadfee64698ad3d3d0806e43f12~mv2.png" alt="QR Code">
+    <img class="qr-code" src="https://static.wixstatic.com/media/47eab7_3512bc49286a4c99830494328d07beea~mv2.png" alt="QR Code">
   </div>
 </div>
 
 <div class="menu" id="menu">
-  <p>Look At The Plants In Our Gardens: </p>
-  <button class="morning-model-btn" onclick="dismissMenu('MS')">Morning Sun!</button>
-  <button class="full-model-btn" onclick="dismissMenu('FS')">Full Sun!</button>
-  <button class="evening-model-btn" onclick="dismissMenu('ES')">Evening Sun!</button>
+  <p>Look At Our Different Garden Models: </p>
+  <div class="buttons">
+    <button class="model-btns" onclick="dismissMenu('MS')">Morning Sun</button>
+    <button class="model-btns" onclick="dismissMenu('FS')">Full Sun</button>
+    <button class="model-btns" onclick="dismissMenu('AS')">Afternoon Sun</button>
+  </div>
   <button class="back-btn" onclick="displayLanding()">Back</button>
 </div>
 
@@ -375,7 +346,7 @@
           <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('FS')">Full Sun</button>
         </li>
         <li class="nav-item mb-2 mb-lg-0 me-lg-1">
-          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('ES')">Evening Sun</button>
+          <button class="btn btn-outline-light w-100 w-lg-auto" onclick="setModel('AS')">Afternoon Sun</button>
         </li>
       </ul>
     </div>
@@ -384,7 +355,7 @@
 
 <div class="container mt-3 details-container">
   <div class="d-flex justify-content-center align-items-center">
-    <h5 class="mb-0 text-center" id="descriptionTitle">Plant Details</h5>
+    <h5 class="mb-0 text-center" id="descriptionTitle">Garden Details</h5>
     <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#descriptionCollapse"
             aria-expanded="false" aria-controls="descriptionCollapse">
       <i class="bi bi-chevron-down"></i>
@@ -407,11 +378,12 @@
     camera-controls
     environment-image="neutral"
     shadow-intensity="1"
-    src="https://static.wixstatic.com/3d/c183c2_df55cc504b704b2fb67229d6a60d48b9.glb"
     camera-orbit="0deg 45deg auto"
-    ar-scale="auto"
+    ar-scale="fixed"
     scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
+    <div itemtype="button" slot="ar-button" class="custom-ar-button"> View In Your Space!</div>
+
     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
     <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
@@ -435,224 +407,57 @@
       <label for="show-dimensions">Show Dimensions:</label>
       <input id="show-dimensions" type="checkbox" checked="true">
     </div>
-    <!--<div class="controls glass">
-      <div>
-        <label for="neutral">Neutral Lighting: </label>
-        <input id="neutral" type="checkbox" checked="true">
-      </div>
-    </div>
-    <div slot="lighting">
-      <directional-light intensity="10" color="#ff0000" position="1 3 1"></directional-light>
-      <directional-light intensity="1" color="#ffd700" position="-1 2 1"></directional-light>
-    </div>-->
+
   </model-viewer>
 
   <!-- Fullscreen button in corner -->
   <button id="fullscreen-button" title="Toggle Fullscreen">⛶</button>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
-    const modelViewer = document.querySelector('#garden-viewer');
-
-    const checkbox = modelViewer.querySelector('#show-dimensions');
-
-    const dimElements = [...modelViewer.querySelectorAll('button'), modelViewer.querySelector('#dimLines')];
-
-    function setVisibility(visible) {
-      dimElements.forEach((element) => {
-        if (visible) {
-          element.classList.remove('hide');
-        } else {
-          element.classList.add('hide');
-        }
-      });
-    }
-
-    checkbox.addEventListener('change', () => {
-      setVisibility(checkbox.checked);
-    });
-
-    modelViewer.addEventListener('ar-status', (event) => {
-      setVisibility(checkbox.checked && event.detail.status !== 'session-started');
-    });
-
-    // update svg
-    function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
-      if (dotHotspot1 && dotHotspot2) {
-        svgLine.setAttribute('x1', dotHotspot1.canvasPosition.x);
-        svgLine.setAttribute('y1', dotHotspot1.canvasPosition.y);
-        svgLine.setAttribute('x2', dotHotspot2.canvasPosition.x);
-        svgLine.setAttribute('y2', dotHotspot2.canvasPosition.y);
-
-        // use provided optional hotspot to tie visibility of this svg line to
-        if (dimensionHotspot && !dimensionHotspot.facingCamera) {
-          svgLine.classList.add('hide');
-        }
-        else {
-          svgLine.classList.remove('hide');
-        }
-      }
-    }
-
-    const dimLines = modelViewer.querySelectorAll('line');
-
-    const renderSVG = () => {
-      drawLine(dimLines[0], modelViewer.queryHotspot('hotspot-dot+X-Y+Z'), modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Y'));
-      drawLine(dimLines[1], modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Z'));
-      drawLine(dimLines[2], modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X+Y-Z')); // always visible
-      drawLine(dimLines[3], modelViewer.queryHotspot('hotspot-dot-X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dim-X-Z'));
-      drawLine(dimLines[4], modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y+Z'), modelViewer.queryHotspot('hotspot-dim-X-Y'));
-    };
-
-    modelViewer.addEventListener('load', () => {
-      const center = modelViewer.getBoundingBoxCenter();
-      const size = modelViewer.getDimensions();
-      const x2 = size.x / 2;
-      const y2 = size.y / 2;
-      const z2 = size.z / 2;
-
-      const ftcv = 0.0328084; // cm to feet conversion
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot+X-Y+Z',
-        position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`
-      });
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dim+X-Y',
-        position: `${center.x + x2 * 1.2} ${center.y - y2 * 1.1} ${center.z}`
-      });
-      modelViewer.querySelector('button[slot="hotspot-dim+X-Y"]').textContent =
-        `${(size.z * 100 * ftcv).toFixed(0)} ft`;
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot+X-Y-Z',
-        position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
-      });
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dim+X-Z',
-        position: `${center.x + x2 * 1.2} ${center.y} ${center.z - z2 * 1.2}`
-      });
-      modelViewer.querySelector('button[slot="hotspot-dim+X-Z"]').textContent =
-        `${(size.y * 100 * ftcv).toFixed(0)} ft`;
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot+X+Y-Z',
-        position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
-      });
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dim+Y-Z',
-        position: `${center.x} ${center.y + y2 * 1.1} ${center.z - z2 * 1.1}`
-      });
-      modelViewer.querySelector('button[slot="hotspot-dim+Y-Z"]').textContent =
-        `${(size.x * 100 * ftcv).toFixed(0)} ft`;
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot-X+Y-Z',
-        position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
-      });
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dim-X-Z',
-        position: `${center.x - x2 * 1.2} ${center.y} ${center.z - z2 * 1.2}`
-      });
-      modelViewer.querySelector('button[slot="hotspot-dim-X-Z"]').textContent =
-        `${(size.y * 100 * ftcv).toFixed(0)} ft`;
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot-X-Y-Z',
-        position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
-      });
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dim-X-Y',
-        position: `${center.x - x2 * 1.2} ${center.y - y2 * 1.1} ${center.z}`
-      });
-      modelViewer.querySelector('button[slot="hotspot-dim-X-Y"]').textContent =
-        `${(size.z * 100 * ftcv).toFixed(0)} ft`;
-
-      modelViewer.updateHotspot({
-        name: 'hotspot-dot-X-Y+Z',
-        position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
-      });
-
-      renderSVG();
-
-      modelViewer.addEventListener('camera-change', renderSVG);
-    });
-
-  /*(() => {
-    const modelViewer = document.querySelector('#garden-viewer');
-    const checkbox = document.querySelector('#neutral');
-
-    checkbox.addEventListener('change', () => {
-      modelViewer.environmentImage = checkbox.checked ? '' : 'legacy';
-    });
-  })();
-
-  function oscillate(from, laps, to, number4) {
-    const period = laps * 1000;
-    const amplitude = (to - from) / 2;
-    const offset = (to + from) / 2;
-    return amplitude * Math.sin((number4 % period) / period * Math.PI * 2) + offset;
-  }
-
-  (() => {
-    const modelViewer = document.querySelector('#garden-viewer');
-    const time = performance.now();
-
-    const animate = (now) => {
-      modelViewer.exposure = oscillate(0, 5, 8, now - time);
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-  })();*/
-
-
   const fullscreenButton = document.getElementById('fullscreen-button');
   let currentInfo = 'FS';
 
   /* the following functions control the switching between different "pages"*/
   function dismissLanding() {
-
     const landing = document.getElementById('landing');
     landing.style.display = 'none';
-
   }
+
   function displayLanding() {
     document.getElementById('landing').style.display = 'flex';
-
   }
+
   function dismissMenu(model) {
     setModel(model);
     const menu = document.getElementById('menu');
     menu.style.display = 'none';
   }
 
-  async function displayMenu(){
+  function displayMenu(){
     document.getElementById('menu').style.display = 'flex';
   }
   /*  END OF "PAGE" FUNCTIONS */
 
+  /* START OF MODEL FUNCTIONS */
   async function setModel(type) {
     const viewer = document.getElementById('garden-viewer');
+
+    // Experimental Code
     viewer.src = ''; // Clear the current model
 
     let modelUrl;
+    let iosModel;
     let exposure;
     let shadowIntensity;
     let shadowSoftness;
     let cameraOrbit;
 
     switch (type) {
-      case 'ES':
-        modelUrl = 'https://static.wixstatic.com/3d/c183c2_2530f1ea3ba14bd29971fb555cecce3e.glb';
-        currentInfo = 'Evening Sun: Learn about the unique benefits and care instructions for a potato garden.';
+      case 'AS':
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_ed7ff1fb431b4b1ca297ba3278493afa.glb';
+        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740789232398_afternoonSun.usdz?alt=media&token=4985661a-aa7b-496a-9d4e-7a07d66abf27';
+        currentInfo = 'This Afternoon Sun Native Garden is designed to thrive in intense sunlight and dry conditions, featuring a diverse mix of drought-tolerant native Hawaiian plants that provide soil stabilization, habitat support, and seasonal interest. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) creates dense, low-growing foliage. Osteomeles anthyllidifolia (Ulei) brings fragrant white flowers for pollinators, while Dodonaea viscosa (A‘ali‘i) contributes reddish seed capsules and height variation. A single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers.';
         exposure = '1';
         shadowIntensity = '4';      // Softer shadows
         shadowSoftness = '0';
@@ -660,8 +465,9 @@
         break;
 
       case 'FS':
-        modelUrl = 'https://static.wixstatic.com/3d/c183c2_0cb73f63fd1e48d69b71974a58eebb2c.glb';
-        currentInfo = 'Full Sun: Learn about the unique benefits and care instructions for a potato garden.';
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_2ea295167c5643f4965074f0af9807da.glb';
+        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740790006115_fullSun.usdz?alt=media&token=89b47026-4f66-44bc-806f-48846f8894cd';
+        currentInfo = 'This Full Sun Native Garden features a resilient mix of native Hawaiian plants, chosen for their drought tolerance, biodiversity support, and cultural significance. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage, while Osteomeles anthyllidifolia (Ulei) adds low ground cover and fragrant white flowers that bloom in the winter and spring. Dodonaea viscosa (A‘ali‘i) offers height and seasonal color, and a single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers and dark green foliage. Designed for minimal maintenance, this sustainable landscape enhances soil health, prevents erosion, and celebrates Hawaiʻi’s native flora.';
         exposure = '4';
         shadowIntensity = '5';
         shadowSoftness = '0';
@@ -669,8 +475,9 @@
         break;
 
       case 'MS':
-        modelUrl = 'https://static.wixstatic.com/3d/c183c2_df55cc504b704b2fb67229d6a60d48b9.glb';
-        currentInfo = 'Morning Sun: Discover the benefits and features of the Dodonaea garden setup.';
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_f8fa20dac8b84a309d6127b757c71270.glb';
+        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2F3dpea.com_morningSun.usdz?alt=media&token=75029b18-8114-4643-9ad1-991fd8f08050';
+        currentInfo = 'This Morning Sun Native Garden features a carefully selected mix of native Hawaiian plants, designed for partial sun conditions while promoting biodiversity, soil stability, and ecological resilience. A base of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage. Osteomeles anthyllidifolia (Ulei) introduces fragrant white flowers, supporting pollinators and contributing to seasonal variation, while Dodonaea viscosa (A‘ali‘i) adds height and reddish seed capsules, enhancing visual interest and reinforcing the garden’s drought resilience.';
         exposure = '1';
         shadowIntensity = '3.5';
         shadowSoftness = '0';
@@ -679,11 +486,11 @@
 
       default:
         console.error('Unknown garden type:', type);
-        return;
     }
 
     // Update model and lighting
     viewer.src = modelUrl;
+    viewer.setAttribute('ios-src', iosModel);
     viewer.setAttribute('exposure', exposure);
     viewer.setAttribute('shadow-intensity', shadowIntensity);
     viewer.setAttribute('shadow-softness', shadowSoftness);
@@ -691,12 +498,11 @@
 
     updateDescription();
 
-    // Wait for the model to load
+    // Wait for the model to fully load
     await new Promise((resolve) => {
       viewer.addEventListener('load', resolve, { once: true });
     });
   }
-
 
   function updateDescription() {
     document.getElementById('descriptionText').textContent = currentInfo;
@@ -709,5 +515,139 @@
       document.exitFullscreen();
     }
   });
+  /* END OF MODEL FUNCTIONS */
+
+  const modelViewer = document.querySelector('#garden-viewer');
+
+  const checkbox = modelViewer.querySelector('#show-dimensions');
+
+  const dimElements = [...modelViewer.querySelectorAll('button'), modelViewer.querySelector('#dimLines')];
+
+  function setVisibility(visible) {
+    dimElements.forEach((element) => {
+      if (visible) {
+        element.classList.remove('hide');
+      } else {
+        element.classList.add('hide');
+        //modelViewer.getElementsByClassName('custom-ar-button').classList.remove('hide');
+      }
+    });
+  }
+
+  checkbox.addEventListener('change', () => {
+    setVisibility(checkbox.checked);
+  });
+
+  modelViewer.addEventListener('ar-status', (event) => {
+    setVisibility(checkbox.checked && event.detail.status !== 'session-started');
+  });
+
+  // update svg
+  function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
+    if (dotHotspot1 && dotHotspot2) {
+      svgLine.setAttribute('x1', dotHotspot1.canvasPosition.x);
+      svgLine.setAttribute('y1', dotHotspot1.canvasPosition.y);
+      svgLine.setAttribute('x2', dotHotspot2.canvasPosition.x);
+      svgLine.setAttribute('y2', dotHotspot2.canvasPosition.y);
+
+      // use provided optional hotspot to tie visibility of this svg line to
+      if (dimensionHotspot && !dimensionHotspot.facingCamera) {
+        svgLine.classList.add('hide');
+      }
+      else {
+        svgLine.classList.remove('hide');
+      }
+    }
+  }
+
+  const dimLines = modelViewer.querySelectorAll('line');
+
+  const renderSVG = () => {
+    drawLine(dimLines[0], modelViewer.queryHotspot('hotspot-dot+X-Y+Z'), modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Y'));
+    drawLine(dimLines[1], modelViewer.queryHotspot('hotspot-dot+X-Y-Z'), modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dim+X-Z'));
+    drawLine(dimLines[2], modelViewer.queryHotspot('hotspot-dot+X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X+Y-Z')); // always visible
+    drawLine(dimLines[3], modelViewer.queryHotspot('hotspot-dot-X+Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dim-X-Z'));
+    drawLine(dimLines[4], modelViewer.queryHotspot('hotspot-dot-X-Y-Z'), modelViewer.queryHotspot('hotspot-dot-X-Y+Z'), modelViewer.queryHotspot('hotspot-dim-X-Y'));
+  };
+
+  modelViewer.addEventListener('load', () => {
+    const center = modelViewer.getBoundingBoxCenter();
+    const size = modelViewer.getDimensions();
+    const x2 = size.x / 2;
+    const y2 = size.y / 2;
+    const z2 = size.z / 2;
+
+    const ftcv = 0.0328084; // cm to feet conversion
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot+X-Y+Z',
+      position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`
+    });
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dim+X-Y',
+      position: `${center.x + x2 * 1.2} ${center.y - y2 * 1.1} ${center.z}`
+    });
+    modelViewer.querySelector('button[slot="hotspot-dim+X-Y"]').textContent =
+      `${(size.z * 100 * ftcv).toFixed(0)} ft`;
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot+X-Y-Z',
+      position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
+    });
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dim+X-Z',
+      position: `${center.x + x2 * 1.2} ${center.y} ${center.z - z2 * 1.2}`
+    });
+    modelViewer.querySelector('button[slot="hotspot-dim+X-Z"]').textContent =
+      `${(size.y * 100 * ftcv).toFixed(0)} ft`;
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot+X+Y-Z',
+      position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
+    });
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dim+Y-Z',
+      position: `${center.x} ${center.y + y2 * 1.1} ${center.z - z2 * 1.1}`
+    });
+    modelViewer.querySelector('button[slot="hotspot-dim+Y-Z"]').textContent =
+      `${(size.x * 100 * ftcv).toFixed(0)} ft`;
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot-X+Y-Z',
+      position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
+    });
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dim-X-Z',
+      position: `${center.x - x2 * 1.2} ${center.y} ${center.z - z2 * 1.2}`
+    });
+    modelViewer.querySelector('button[slot="hotspot-dim-X-Z"]').textContent =
+      `${(size.y * 100 * ftcv).toFixed(0)} ft`;
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot-X-Y-Z',
+      position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
+    });
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dim-X-Y',
+      position: `${center.x - x2 * 1.2} ${center.y - y2 * 1.1} ${center.z}`
+    });
+    modelViewer.querySelector('button[slot="hotspot-dim-X-Y"]').textContent =
+      `${(size.z * 100 * ftcv).toFixed(0)} ft`;
+
+    modelViewer.updateHotspot({
+      name: 'hotspot-dot-X-Y+Z',
+      position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
+    });
+
+    renderSVG();
+
+    modelViewer.addEventListener('camera-change', renderSVG);
+  });
+
 </script>
 </body>
