@@ -331,7 +331,7 @@
   <div id="qr-container">
     <p1> Want To See How It Looks In Your Yard? </p1>
     <p2> Scan Below: </p2>
-    <img class="qr-code" src="https://static.wixstatic.com/media/47eab7_3512bc49286a4c99830494328d07beea~mv2.png" alt="QR Code">
+    <img class="qr-code" src="https://static.wixstatic.com/media/c183c2_1937f816425e4e8d982f4cdf30b78f25~mv2.png" alt="QR Code">
   </div>
 </div>
 
@@ -460,21 +460,6 @@
     document.getElementById('menu').style.display = 'flex';
   }
 
-  /*// Function to log messages to screen for debugging
-  const logElement = document.createElement('div');
-  logElement.style.position = 'fixed';
-  logElement.style.bottom = '10px';
-  logElement.style.left = '10px';
-  logElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-  logElement.style.color = 'white';
-  logElement.style.padding = '5px 10px';
-  logElement.style.zIndex = '9999';
-  document.body.appendChild(logElement);
-
-  function log(message) {
-    logElement.innerText = message;
-  }*/
-
   // Promise-based loading function
   function loading() {
     return new Promise((resolve, reject) => {
@@ -485,14 +470,12 @@
 
       // Show loading screen
       loadingElement.style.display = 'flex';
-      //log('Loading: Shown');
 
-      // Set a 30-second timeout to show reload recommendation
+      // Set a 15-second timeout to show reload recommendation
       const timeout = setTimeout(() => {
-        //log('AR session not started. Consider reloading the page.');
         alert('If an AR session has not started, please reload the page.');
         loadingElement.style.display = 'none';
-      }, 30000);
+      }, 15000);
 
       // Check for AR session every 500ms
       const interval = setInterval(() => {
@@ -500,13 +483,10 @@
           clearInterval(interval);
           clearTimeout(timeout);
 
-          //log('AR session started');
-
           // Hide loading when AR session ends
           arViewer.addEventListener('ar-status', (event) => {
             if (event.detail.status === 'not-presenting') {
               loadingElement.style.display = 'none';
-              //log('Loading: Hidden');
             }
           });
 
@@ -518,7 +498,7 @@
 
   // Usage of the loading function
   function loader() {
-    loading();//.then((message) => log(message)).catch((error) => log(error));
+    loading();
   }
 
 
@@ -532,7 +512,6 @@
     viewer.src = ''; // Clear the current model
 
     let modelUrl;
-    let iosModel;
     let exposure;
     let shadowIntensity;
     let shadowSoftness;
@@ -541,7 +520,6 @@
     switch (type) {
       case 'AS':
         modelUrl = 'https://static.wixstatic.com/3d/c183c2_ed7ff1fb431b4b1ca297ba3278493afa.glb';
-        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740789232398_afternoonSun.usdz?alt=media&token=4985661a-aa7b-496a-9d4e-7a07d66abf27';
         currentInfo = 'This Afternoon Sun Native Garden is designed to thrive in intense sunlight and dry conditions, featuring a diverse mix of drought-tolerant native Hawaiian plants that provide soil stabilization, habitat support, and seasonal interest. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) creates dense, low-growing foliage. Osteomeles anthyllidifolia (Ulei) brings fragrant white flowers for pollinators, while Dodonaea viscosa (A‘ali‘i) contributes reddish seed capsules and height variation. A single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers.';
         exposure = '1';
         shadowIntensity = '4';      // Softer shadows
@@ -550,8 +528,7 @@
         break;
 
       case 'FS':
-        modelUrl = 'https://static.wixstatic.com/3d/c183c2_2ea295167c5643f4965074f0af9807da.glb';
-        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2Fcompressed_1740790006115_fullSun.usdz?alt=media&token=89b47026-4f66-44bc-806f-48846f8894cd';
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_54822053da3640108a8e0351cb63ed03.glb';
         currentInfo = 'This Full Sun Native Garden features a resilient mix of native Hawaiian plants, chosen for their drought tolerance, biodiversity support, and cultural significance. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage, while Osteomeles anthyllidifolia (Ulei) adds low ground cover and fragrant white flowers that bloom in the winter and spring. Dodonaea viscosa (A‘ali‘i) offers height and seasonal color, and a single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers and dark green foliage. Designed for minimal maintenance, this sustainable landscape enhances soil health, prevents erosion, and celebrates Hawaiʻi’s native flora.';
         exposure = '4';
         shadowIntensity = '5';
@@ -560,8 +537,7 @@
         break;
 
       case 'MS':
-        modelUrl = 'https://static.wixstatic.com/3d/c183c2_f8fa20dac8b84a309d6127b757c71270.glb';
-        iosModel = 'https://firebasestorage.googleapis.com/v0/b/seedsync-8d924.firebasestorage.app/o/models%2F3dpea.com_morningSun.usdz?alt=media&token=75029b18-8114-4643-9ad1-991fd8f08050';
+        modelUrl = 'https://static.wixstatic.com/3d/c183c2_d21bd4a9c2d4479181ad2ed436483005.glb';
         currentInfo = 'This Morning Sun Native Garden features a carefully selected mix of native Hawaiian plants, designed for partial sun conditions while promoting biodiversity, soil stability, and ecological resilience. A base of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage. Osteomeles anthyllidifolia (Ulei) introduces fragrant white flowers, supporting pollinators and contributing to seasonal variation, while Dodonaea viscosa (A‘ali‘i) adds height and reddish seed capsules, enhancing visual interest and reinforcing the garden’s drought resilience.';
         exposure = '1';
         shadowIntensity = '3.5';
@@ -575,7 +551,6 @@
 
     // Update model and lighting
     viewer.src = modelUrl;
-    viewer.setAttribute('ios-src', iosModel);
     viewer.setAttribute('exposure', exposure);
     viewer.setAttribute('shadow-intensity', shadowIntensity);
     viewer.setAttribute('shadow-softness', shadowSoftness);
@@ -614,7 +589,6 @@
         element.classList.remove('hide');
       } else {
         element.classList.add('hide');
-        //modelViewer.getElementsByClassName('custom-ar-button').classList.remove('hide');
       }
     });
   }
