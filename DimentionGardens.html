@@ -314,8 +314,9 @@
   </style>
 
 </head>
+<!-- Main layout with a full-height flex container -->
 <body class="d-flex flex-column" style="height: 100vh;">
-
+<!-- Landing Page with Model Viewer and QR Code -->
 <div class="landing" id="landing">
   <h1> AR Model Viewer </h1>
   <model-viewer
@@ -327,14 +328,14 @@
   </model-viewer>
 
   <button class="custom-btn" onclick="dismissLanding()">View Here!</button>
-
+  <!-- QR Code Section for AR Interaction -->
   <div id="qr-container">
     <p1> Want To See How It Looks In Your Yard? </p1>
     <p2> Scan Below: </p2>
     <img class="qr-code" src="https://static.wixstatic.com/media/c183c2_1937f816425e4e8d982f4cdf30b78f25~mv2.png" alt="QR Code">
   </div>
 </div>
-
+<!-- Menu Section for Selecting Garden Models -->
 <div class="menu" id="menu">
   <p>Look At Our Different Garden Models: </p>
   <div class="buttons">
@@ -344,7 +345,7 @@
   </div>
   <button class="back-btn" onclick="displayLanding()">Back</button>
 </div>
-
+<!-- Navigation Bar for Quick Model Access -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
   <div class="container-fluid">
     <button class="navbar-menu-btn" onclick="displayMenu()" >Menu</button>
@@ -367,7 +368,7 @@
     </div>
   </div>
 </nav>
-
+<!-- Garden Model Details Section with Collapsible Info -->
 <div class="container mt-3 details-container">
   <div class="d-flex justify-content-center align-items-center">
     <h5 class="mb-0 text-center" id="descriptionTitle">Garden Details</h5>
@@ -384,13 +385,15 @@
     </div>
   </div>
 </div>
-
+<!-- Main Model Viewer with AR and Interaction Points -->
 <div id="viewer-container" class="p-0">
+  <!-- Loading Screen for AR Session -->
   <div id="loading" class="loading">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
+  <!-- Interactive Model Viewer with AR Support -->
   <model-viewer
     id="garden-viewer"
     ar
@@ -402,8 +405,10 @@
     ar-scale="fixed"
     scale="0.5 0.5 0.5"
     max-camera-orbit= 'auto 90deg auto'>
-    <div itemtype="button" onclick="loader()" slot="ar-button" class="custom-ar-button"> View In Your Space!</div>
+    <!-- Button to Enter AR Mode -->
+    <div itemtype="button" onclick="loading()" slot="ar-button" class="custom-ar-button"> View In Your Space!</div>
 
+    <!-- Hotspots for dimensions -->
     <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
     <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
     <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
@@ -423,6 +428,7 @@
       <line class="dimensionLine"></line>
     </svg>
 
+    <!-- Dimension Toggle Control -->
     <div id="controls" class="dim glass">
       <label for="show-dimensions">Show Dimensions:</label>
       <input id="show-dimensions" type="checkbox" checked="true">
@@ -430,17 +436,18 @@
 
   </model-viewer>
 
-  <!-- Fullscreen button in corner -->
+  <!-- Fullscreen Toggle Button -->
   <button id="fullscreen-button" title="Toggle Fullscreen">⛶</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // Get references to important DOM elements
   const fullscreenButton = document.getElementById('fullscreen-button');
   let currentInfo = 'FS';
   const arViewer = document.getElementById('garden-viewer');
   const loadingElement = document.getElementById('loading');
 
-  /* the following functions control the switching between different "pages"*/
+  /* Functions to control navigation between different "pages" */
   function dismissLanding() {
     const landing = document.getElementById('landing');
     landing.style.display = 'none';
@@ -460,7 +467,7 @@
     document.getElementById('menu').style.display = 'flex';
   }
 
-  // Promise-based loading function
+  // Function to show loading screen and check for AR session
   function loading() {
     return new Promise((resolve, reject) => {
       if (!arViewer) {
@@ -496,11 +503,6 @@
     });
   }
 
-  // Usage of the loading function
-  function loader() {
-    loading();
-  }
-
 
   /*  END OF "PAGE" FUNCTIONS */
 
@@ -514,7 +516,6 @@
     let modelUrl;
     let exposure;
     let shadowIntensity;
-    let shadowSoftness;
     let cameraOrbit;
 
     switch (type) {
@@ -523,7 +524,6 @@
         currentInfo = 'This Afternoon Sun Native Garden is designed to thrive in intense sunlight and dry conditions, featuring a diverse mix of drought-tolerant native Hawaiian plants that provide soil stabilization, habitat support, and seasonal interest. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) creates dense, low-growing foliage. Osteomeles anthyllidifolia (Ulei) brings fragrant white flowers for pollinators, while Dodonaea viscosa (A‘ali‘i) contributes reddish seed capsules and height variation. A single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers.';
         exposure = '1';
         shadowIntensity = '4';      // Softer shadows
-        shadowSoftness = '0';
         cameraOrbit = '0deg 45deg auto'; // Adjust camera angle
         break;
 
@@ -532,7 +532,6 @@
         currentInfo = 'This Full Sun Native Garden features a resilient mix of native Hawaiian plants, chosen for their drought tolerance, biodiversity support, and cultural significance. A foundation of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage, while Osteomeles anthyllidifolia (Ulei) adds low ground cover and fragrant white flowers that bloom in the winter and spring. Dodonaea viscosa (A‘ali‘i) offers height and seasonal color, and a single Hibiscus arnottianus (Kokio Keokeo) serves as the garden’s focal point, with its fragrant white flowers and dark green foliage. Designed for minimal maintenance, this sustainable landscape enhances soil health, prevents erosion, and celebrates Hawaiʻi’s native flora.';
         exposure = '4';
         shadowIntensity = '5';
-        shadowSoftness = '0';
         cameraOrbit = '0deg 0deg auto';
         break;
 
@@ -541,7 +540,6 @@
         currentInfo = 'This Morning Sun Native Garden features a carefully selected mix of native Hawaiian plants, designed for partial sun conditions while promoting biodiversity, soil stability, and ecological resilience. A base of Dianella sandwicensis (Ukiuki) and Carex wahuensis (Oʻahu sedge) provides lush, low-growing foliage. Osteomeles anthyllidifolia (Ulei) introduces fragrant white flowers, supporting pollinators and contributing to seasonal variation, while Dodonaea viscosa (A‘ali‘i) adds height and reddish seed capsules, enhancing visual interest and reinforcing the garden’s drought resilience.';
         exposure = '1';
         shadowIntensity = '3.5';
-        shadowSoftness = '0';
         cameraOrbit = '0deg 30deg auto';
         break;
 
@@ -553,7 +551,6 @@
     viewer.src = modelUrl;
     viewer.setAttribute('exposure', exposure);
     viewer.setAttribute('shadow-intensity', shadowIntensity);
-    viewer.setAttribute('shadow-softness', shadowSoftness);
     viewer.setAttribute('camera-orbit', cameraOrbit);
 
     updateDescription();
@@ -577,6 +574,7 @@
   });
   /* END OF MODEL FUNCTIONS */
 
+  /* Start of Dimensions functions */
   const modelViewer = document.querySelector('#garden-viewer');
 
   const checkbox = modelViewer.querySelector('#show-dimensions');
@@ -708,5 +706,6 @@
     modelViewer.addEventListener('camera-change', renderSVG);
   });
 
+  /* End of Dimensions functions */
 </script>
 </body>
