@@ -1,0 +1,31 @@
+Overview
+This project consists of a single file, index.html, which combines HTML, CSS, and JavaScript to
+create an augmented reality (AR) tool. The tool has gone through multiple iterations, and the
+final version is embedded in a Wix page for seamless user interaction.
+
+The purpose of the AR tool is to showcase models of Hawaiian gardens and is being used to support
+a local initiative focused on the protection and preservation of Hawaii's ecosystems. The tool
+includes a landing page, a menu page, and a viewer page to facilitate the user experience. There
+are embedded buttons that allow users to switch between different models. When accessed on a
+mobile device, the AR models can be placed within your own space for an immersive experience.
+
+This code was developed for Protect & Preserve Hawaiʻi, a nonprofit organization dedicated to
+ecosystem conservation.
+
+Features
+- Landing Page: The first page users will see, introducing the tool and its purpose.
+- Menu Page: Allows users to navigate through different Hawaiian garden models.
+- Viewer Page: Displays the selected model, with the ability to place it in your environment
+  when using a mobile device.
+
+Usage
+The code is designed to be embedded in a Wix page for easy integration. When viewed on a
+compatible device, users can interact with and explore different garden models in augmented
+reality.
+
+Access
+This repo is publicly available for non-commercial usage. You can find more information regarding
+this initiative and see the AR viewer in action at the following link:
+https://www.protectpreservehi.org/
+
+
